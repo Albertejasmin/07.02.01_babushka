@@ -27,13 +27,36 @@
       nav {
         margin: 0 auto;
         text-align: center;
+        margin-bottom: 2rem;
+      }
+      h1 {
+        font-size: 4rem;
+      }
+      body {
+        background-color: lightgreen;
+      }
+      #popop {
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        background-color: #000000aa;
+        display: flex;
+        justify-content: center;
+        display: none;
+      }
+      #popop article {
+        width: 80%;
+        background-color: white;
+        max-height: 80vh;
       }
     </style>
   </head>
 
   <body>
     <nav>
-      <h1>Alle</h1>
+      <h1>MENU</h1>
       <button data-retter="alle" class="valgt">Alle</button>
       <button data-retter="forretter">Forretter</button>
       <button data-retter="hovedretter">Hovedretter</button>
@@ -51,6 +74,15 @@
         <p class="pris"></p>
       </article>
     </template>
+
+    <div id="popop">
+      <article>
+        <img src="" alt="" />
+        <h2></h2>
+        <p></p>
+        <p></p>
+      </article>
+    </div>
 
     <script>
       const endpoint = "https://babushka-dd8a.restdb.io/rest/menu";
@@ -96,33 +128,30 @@
           if (filter == "alle" || filter == mad.kategori) {
             const klon = template.cloneNode(true);
             klon.querySelector(".billede").src = "medium/" + mad.billednavn + "-md.jpg";
+            klon.querySelector("article").addEventListener("click", () => visDetaljer(mad));
             klon.querySelector(".navn").textContent = mad.navn;
-            klon.querySelector(".pris").textContent = mad.pris;
+            klon.querySelector(".pris").textContent = "Pris: " + mad.pris + ",-";
             klon.querySelector(".kortbeskrivelse").textContent = mad.kortbeskrivelse;
-            klon.querySelector(".langbeskrivelse").textContent = mad.langbeskrivelse;
-            klon.querySelector(".oprindelsesregion").textContent = mad.oprindelsesregion;
+            // klon.querySelector(".langbeskrivelse").textContent = mad.langbeskrivelse;
+            // klon.querySelector(".oprindelsesregion").textContent = mad.oprindelsesregion;
             container.appendChild(klon);
           }
         });
       }
-      hentData();
 
-      //   //   mit gamle
-      //   function vis() {
-      //     const container = document.querySelector("#container");
-      //     const skabelon = document.querySelector("template").content;
-      //     data.forEach((mad) => {
-      //       const klon = skabelon.cloneNode(true);
-      //       klon.querySelector(".billede").src = "medium/" + mad.billednavn + "-md.jpg";
-      //       klon.querySelector(".navn").textContent = mad.navn;
-      //       klon.querySelector(".pris").textContent = mad.pris;
-      //       klon.querySelector(".kortbeskrivelse").textContent = mad.kortbeskrivelse;
-      //       klon.querySelector(".langbeskrivelse").textContent = mad.langbeskrivelse;
-      //       klon.querySelector(".oprindelsesregion").textContent = mad.oprindelsesregion;
-      //       container.appendChild(klon);
-      //     });
-      //   }
-      //   hentData();
+      document.querySelector("#popop").addEventListener("click", () => (popop.style.display = "none"));
+
+      function visDetaljer(madData) {
+        console.log(madData);
+        const popop = document.querySelector("#popop");
+        popop.style.display = "flex";
+        popop.querySelector("img").src = "medium/" + madData.billednavn + "-md.jpg";
+        popop.querySelector("p").textContent = madData.langbeskrivelse;
+        popop.querySelector("p").textContent = madData.oprindelsesregion;
+        popop.addEventListener("click", () => (popop.styledisplay = "none"));
+      }
+
+      hentData();
     </script>
   </body>
 </html>
