@@ -13,27 +13,40 @@
         gap: 10px;
       }
       article {
-        border: 1px solid black;
+        /* border: 1rem solid orange; */
         padding: 1em;
+        /* background-color: #e0c5a3; */
+        background-color: whitesmoke;
       }
       img {
-        aspect-ratio: 1/1;
+        aspect-ratio: 16/10;
         max-width: 100%;
         /* object-fit: cover; */
       }
       .valgt {
-        color: blue;
+        color: whitesmoke;
       }
       nav {
         margin: 0 auto;
         text-align: center;
         margin-bottom: 2rem;
+        /* display: flex;
+        justify-content: space-between; */
       }
-      h1 {
-        font-size: 4rem;
+      nav button {
+        background-color: #5db5df;
+      }
+      header {
+        background-color: #5db5df;
+        padding: 2rem;
+      }
+      header h1 {
+        color: whitesmoke;
+        font-size: 3rem;
       }
       body {
-        background-color: lightgreen;
+        /* background-color: #8f6e49; */
+        background-color: #e0c5a3;
       }
       #popop {
         position: fixed;
@@ -44,19 +57,30 @@
         background-color: #000000aa;
         display: flex;
         justify-content: center;
+
         display: none;
       }
       #popop article {
         width: 80%;
         background-color: white;
-        max-height: 80vh;
+        display: flex;
+        flex-direction: column;
+        /* max-height: 80vh; */
+        justify-content: center;
+      }
+      #popop .billedePop {
+        align-self: center;
       }
     </style>
   </head>
 
   <body>
+    <header>
+      <h1>BISTRO BABUSHKA</h1>
+    </header>
     <nav>
       <h1>MENU</h1>
+
       <button data-retter="alle" class="valgt">Alle</button>
       <button data-retter="forretter">Forretter</button>
       <button data-retter="hovedretter">Hovedretter</button>
@@ -77,7 +101,7 @@
 
     <div id="popop">
       <article>
-        <img src="" alt="" />
+        <img class="billedePop" src="" alt="" /><img />
         <h2></h2>
         <p></p>
         <p></p>
@@ -146,8 +170,9 @@
         const popop = document.querySelector("#popop");
         popop.style.display = "flex";
         popop.querySelector("img").src = "medium/" + madData.billednavn + "-md.jpg";
+        popop.querySelector("h2").textContent = madData.navn;
         popop.querySelector("p").textContent = madData.langbeskrivelse;
-        popop.querySelector("p").textContent = madData.oprindelsesregion;
+        popop.querySelector("p+p").textContent = madData.oprindelsesregion;
         popop.addEventListener("click", () => (popop.styledisplay = "none"));
       }
 
