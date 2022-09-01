@@ -24,7 +24,9 @@
         /* object-fit: cover; */
       }
       .valgt {
-        color: whitesmoke;
+        background-color: whitesmoke;
+        color: #498f8f;
+        font-weight: bold;
       }
       nav {
         margin: 0 auto;
@@ -34,15 +36,24 @@
         justify-content: space-between; */
       }
       nav button {
-        background-color: #5db5df;
+        color: whitesmoke;
+        background-color: #498f8f;
+        border: 0;
+        padding: 1rem;
+        font-size: 1rem;
+        font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+      }
+
+      nav button:hover {
+        border: 2px solid whitesmoke;
       }
       header {
-        background-color: #5db5df;
+        background-color: #498f8f;
         padding: 2rem;
       }
       header h1 {
         color: whitesmoke;
-        font-size: 3rem;
+        font-size: 4rem;
       }
       body {
         /* background-color: #8f6e49; */
@@ -57,9 +68,9 @@
         background-color: #000000aa;
         display: flex;
         justify-content: center;
-
         display: none;
       }
+
       #popop article {
         width: 80%;
         background-color: white;
@@ -172,7 +183,7 @@
         popop.querySelector("img").src = "medium/" + madData.billednavn + "-md.jpg";
         popop.querySelector("h2").textContent = madData.navn;
         popop.querySelector("p").textContent = madData.langbeskrivelse;
-        popop.querySelector("p+p").textContent = madData.oprindelsesregion;
+        popop.querySelector("p+p").textContent = "Oprindelsesregion: " + madData.oprindelsesregion;
         popop.addEventListener("click", () => (popop.styledisplay = "none"));
       }
 
